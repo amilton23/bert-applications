@@ -46,36 +46,36 @@ class BERTHuggingFaceClassification:
         if foundation_model is not None:
             self.model_name = foundation_model
 
-        print(f"Modelo BERT inicializado com {self.model_name}")
+        print(f"BERT model initialized with '{self.model_name}' pretrained model")
         print("  Config:")
-        print(f"    - {bert_config[size]['layers']} camadas")
-        print(f"    - {bert_config[size]['params']} parâmetros")
-        print(f"    - setado para {self.device}")
+        print(f"    - {bert_config[size]['layers']} layers")
+        print(f"    - {bert_config[size]['params']} parameters")
+        print(f"    - set to {self.device}")
         print("")
 
         if dict_labels:
             self._dict_labels = dict_labels
 
             if "0" not in self._dict_labels:
-                self._dict_labels["0"] = "NEGATIVO"
+                self._dict_labels["0"] = "NEGATIVE"
             if "1" not in self._dict_labels:
-                self._dict_labels["1"] = "POSITIVO"
+                self._dict_labels["1"] = "POSITIVE"
             if "-1" not in self._dict_labels:
-                self._dict_labels["-1"] = "NÃO ENCONTRADO"
+                self._dict_labels["-1"] = "NOT FOUND"
             if "-2" not in self._dict_labels:
-                self._dict_labels["-2"] = "INDEFINIDO"
+                self._dict_labels["-2"] = "UNDEFINED"
             if "-3" not in self._dict_labels:
-                self._dict_labels["-3"] = "DESCONHECIDO"
+                self._dict_labels["-3"] = "UNKNOWN"
             if "-4" not in self._dict_labels:
-                self._dict_labels["-4"] = "VAZIO"
+                self._dict_labels["-4"] = "EMPTY"
         else:
             self._dict_labels = {
-                "0": "NEGATIVO",
-                "1": "POSITIVO",
-                "-1": "NÃO ENCONTRADO",
-                "-2": "INDEFINIDO",
-                "-3": "DESCONHECIDO",
-                "-4": "VAZIO",
+                "0": "NEGATIVE",
+                "1": "POSITIVE",
+                "-1": "NOT FOUND",
+                "-2": "UNDEFINED",
+                "-3": "UNKNOWN",
+                "-4": "EMPTY",
             }
 
         if preprocess is None:

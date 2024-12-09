@@ -1,0 +1,36 @@
+name: env_bert_use_case
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - numpy
+  - pandas
+  - scikit-learn
+  - scipy
+  - matplotlib
+  - seaborn
+  - pyarrow
+  - requests
+  - tqdm
+  - ghostscript
+  - pytorch
+  - pytorch-lightning
+  - pip:
+      - camelot-py
+      - pydrive
+      - plotly
+      - toml
+      - streamlit
+      - tabula-py
+      - streamlit_extras
+      - transformers
+      - torch
+      - torchmetrics
+      - torchvision
+      - torchaudio
+      - tensorboard==2.17.0
+      - nltk
+      - unidecode
+      - statsmodels

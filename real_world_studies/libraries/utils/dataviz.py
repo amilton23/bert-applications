@@ -13,17 +13,15 @@ import time
 from multiprocessing import Pool
 from nltk import sent_tokenize
 from unidecode import unidecode
-import re 
 
-import tomli
-import ocifs
+import seaborn as sns
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch
-plt.style.use("seaborn-white")
+sns.set_style('white')
 
 # Avaliação do modelo
 from sklearn.metrics import (

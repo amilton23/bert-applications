@@ -70,30 +70,31 @@ def print_classification_metrics(
     
     return None
 
-def print_auc_and_plot_precision_recall(data_poc_enriched_final, is_multiclass=False):
+def print_auc_and_plot_precision_recall(y_true, y_prob, is_multiclass=False):
     """
     Calcula o AUC (Área sob a Curva ROC) e, no caso de classificação binária, plota a curva Precision-Recall.
     Suporta tanto problemas de classificação multiclasses quanto binária.
 
     Parâmetros:
-    - data_poc_enriched_final: DataFrame contendo as colunas 'y' (verdadeiros) e 'VL_SCORE' (probabilidade predita).
-    - is_multiclass: booleano, indica se o problema é multiclasses. 
+    - y_true: Pandas Series contendo a coluna 'y' de inferência (verdadeiros).
+    - y_prob: Pandas Series contendo a coluna de scores de inferência (probabilidade predita).
+    - is_multiclass: booleano, indica se o problema é multiclasses.
       Se True, será usado o método One-vs-Rest (OvR) para AUC multiclasses.
     """
     try:
         if is_multiclass:
             # AUC para problemas multiclasses usando a estratégia One-vs-Rest (OvR)
-            print('AUC:', roc_auc_score(data_poc_enriched_final['y'], 
-                                        data_poc_enriched_final['VL_SCORE'], 
+            print('AUC:', roc_auc_score(y_true, 
+                                        y_prob, 
                                         multi_class='ovr'))
         else:
             # AUC para problemas binários
-            print('AUC:', roc_auc_score(data_poc_enriched_final['y'], 
-                                        data_poc_enriched_final['VL_SCORE']))
+            print('AUC:', roc_auc_score(y_true, 
+                                        y_prob))
 
             # Plotando a curva Precision-Recall para problemas binários
-            precision, recall, _ = precision_recall_curve(data_poc_enriched_final['y'], 
-                                                          data_poc_enriched_final['VL_SCORE'])
+            precision, recall, _ = precision_recall_curve(y_true, 
+                                                          y_prob)
 
             plt.plot(recall, precision)
             plt.xlabel('Recall')
